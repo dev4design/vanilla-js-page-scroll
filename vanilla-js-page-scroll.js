@@ -7,7 +7,6 @@
 /**
  * @description
  * Pure JavaScript one page scroll with basic features.
- * https://github.com/zoltantothcom/vanilla-js-carousel/blob/3dc4141239dd337482c2c668bccfb4855154069a/src/javascript/vanilla-js-carousel.js
  *
  * @class
  * @param {object} options - 사용자정의 셋팅
