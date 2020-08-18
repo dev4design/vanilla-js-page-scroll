@@ -7,12 +7,14 @@
 /**
  * @description
  * Pure JavaScript one page scroll with basic features.
+ * https://github.com/dev4design/vanilla-js-page-scroll
  *
  * @class
  * @param {object} options - 사용자정의 셋팅
  * @param {string} options.elem - 스크롤 영역의 HTML id.
  * @param {number} options.animateDuration - 스크롤 애니메이션의 길이
  * @param {string} options.animateTiming - 애니메이션 시작과 끝의 움직임 처리
+ * @param {number} options.secNumber - 섹션 번호 출력
  */
 function pageScroll(options) {
 
@@ -27,25 +29,26 @@ function pageScroll(options) {
 		currentPosition = 0
 
 	// URL의 해시값을 0으로 초기화 (#0)
-	location.hash = 0;
+	location.hash = 1;
+
+	if (options.secNumber) {
+		var secNumContainer = document.createElement('div');
+		secNumContainer.classList.add('js-page-scroll-secNum');
+
+		document.body.appendChild(secNumContainer);
+	}
 
 	// 마우스 휠 이벤트 시작
 	onWheel();
 
-	/**
-	 * 이벤트 핸들러
-	 * 1. 꽉 찬 화면으로 보여질 섹션의 포지션 (휠 이벤트)
-	 * 2. 섹션의 포지션을 URL의 해시에 대입 (해시 변경 이벤트)
-	 * 해시 변경 이벤트는 URL의 해시값을 직접 변경했을 때도 섹션이 이동하기 위한 이벤트
-	 */
 	function onWheel() {
 		// 휠 이벤트
 		document.addEventListener('wheel', doWheel, false);
-
-		// location.hash 값이 변하면 발생하는 이벤트
-		// URL 창에 www.abc.com/#4 라고 입력하면 해당 섹션으로 바로 이동시키기 위한 이벤트
-		window.addEventListener('hashchange', hashChange, false);
 	}
+
+	// location.hash 값이 변하면 발생하는 이벤트
+	// URL 창에 www.abc.com/#4 라고 입력하면 해당 섹션으로 바로 이동시키기 위한 이벤트
+	window.addEventListener('hashchange', hashChange, false);
 
 	/**
 	 * 휠 이벤트 핸들
@@ -75,7 +78,7 @@ function pageScroll(options) {
 	function hashChange() {
 		if (location) {
 			// 각 섹션의 인덱스를 숫자로 받기 위해 현재 URL의 해시값에서 # 문자를 삭제
-			var anchor = location.hash.replace('#', '').split('/')[0];
+			var anchor = location.hash.replace('#', '').split('/')[0] - 1;
 
 			if (anchor < 0) {
 				changeCurrentPosition(0);
@@ -83,6 +86,13 @@ function pageScroll(options) {
 				changeCurrentPosition(maxPosition);
 			} else {
 				currentPosition = anchor;
+
+				// 섹션 넘버링
+				if (options.secNumber) {
+					secNumContainer.innerHTML = '<span class="secNumCurrent">' + (currentPosition + 1) + '</span>'
+						+ '<span class="secNumDivide"> / </span>'
+						+ '<span class="secNumTotal">' + sections.length + '</span>';
+				}
 
 				// 최소범위와 최대범위 이내에서 이벤트가 발생하면 스크롤 애니메이션 실행
 				animateScroll();
@@ -107,7 +117,7 @@ function pageScroll(options) {
 	 */
 	function changeCurrentPosition(position) {
 		currentPosition = position;
-		location.hash = position;
+		location.hash = position + 1;
 	}
 
 	function animateScroll() {

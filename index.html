@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <title>Vanilla JS Page Scroll</title>
     <style type="text/css">
-        body, html {
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+        }
+
+        body {
+            font-size: 16px; /* default for rem */
         }
 
         .js-page-scroll-container {
@@ -35,12 +39,23 @@
         .sec-05 { background-color: #8b44af }
 
         p {
-            font-size: 1em;
+            font-size: 1rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1em;
+            letter-spacing: 1rem;
             color: #fff;
         }
+
+        .js-page-scroll-secNum {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 999;
+            font-size: 1rem;
+        }
+
+        .js-page-scroll-secNum .secNumCurrent { font-weight: bold; }
+        .js-page-scroll-secNum .secNumTotal { font-weight: normal; }
     </style>
 </head>
 <body>
@@ -66,7 +81,8 @@
         var myPageScroll = new pageScroll({
             elem: "js-page-scroll",
             animateDuration: 0.7,
-            animateTiming: "ease"
+            animateTiming: "ease",
+            secNumber: true
         });
     </script>
 </body>

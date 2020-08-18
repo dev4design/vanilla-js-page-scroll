@@ -33,7 +33,8 @@ _**Pure JavaScript**_ full paging scroll with basic features.
         var myPageScroll = new pageScroll({
             elem: "js-page-scroll",
             animateDuration: 0.7,
-            animateTiming: "ease"
+            animateTiming: "ease",
+            secNumber: true
         });
     </script>
     ```
@@ -43,7 +44,8 @@ _**Pure JavaScript**_ full paging scroll with basic features.
    var myPageScroll = new pageScroll({
        elem: "js-page-scroll",   // 스크롤 영역의 HTML id
        animateDuration: 0.7,     // 스크롤 애니메이션의 길이
-       animateTiming: "ease"     // 애니메이션 시작과 끝의 움직임 처리
+       animateTiming: "ease",    // 애니메이션 시작과 끝의 움직임 처리
+       secNumber: true           // 섹션 번호 출력
    }); 
     ```
 
@@ -56,12 +58,7 @@ Option | Type | Default | Description
 elem | string | carousel | 스크롤 영역의 HTML _id_
 animateDuration | int  | 0.7 | 스크롤 애니메이션의 길이 (milliseconds)
 animateTiming | string | ease | 애니메이션 시작과 끝의 움직임 처리
-
-
-## Methods
-Method | Argument | Description
------- | -------- | -----------
-.showChapter(index) | index: int | 현재 보고있는 섹션의 번호 표시 (추가 중)
+secNumber | boolean | true | 현재 위치한 섹션 번호 출력
 
 
 ## Browser support and dependencies
