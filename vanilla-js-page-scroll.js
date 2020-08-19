@@ -23,7 +23,7 @@ function pageScroll(options) {
 	var element = document.getElementById(options.elem || 'js-page-scroll'),
 		sections = element.querySelectorAll('.js-page-scroll-section'),
 
-		animateDuration = options.animateDuration || 0.7,
+		animateDuration = options.animateDuration || 1000,
 		animateTiming = options.animateTiming || 'ease-in-out',
 		maxPosition = sections.length - 1,
 		currentPosition = 0
@@ -127,6 +127,6 @@ function pageScroll(options) {
 		element.style.transform = 'translateY(-' + distance + '%)';
 
 		// 섹션 에니메이션의 처리
-		element.style.transition = 'all ' + animateDuration + 's ' + animateTiming;
+		element.style.transition = 'all ' + animateDuration + 'ms ' + animateTiming;
 	}
 }
