@@ -28,14 +28,14 @@ function pageScroll(options) {
 		maxPosition = sections.length - 1,
 		currentPosition = 0
 
-	// URL의 해시값을 0으로 초기화 (#0)
+	// URL의 해시값을 1로 초기화 (#1)
 	location.hash = 1;
 
 	if (options.secNumber) {
 		var secNumContainer = document.createElement('div');
 		secNumContainer.classList.add('js-page-scroll-secNum');
 
-		document.body.appendChild(secNumContainer);
+		element.parentNode.insertBefore(secNumContainer, element);
 	}
 
 	// 마우스 휠 이벤트 시작
