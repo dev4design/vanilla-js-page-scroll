@@ -24,7 +24,7 @@ function pageScroll(options) {
 		sections = element.querySelectorAll('.js-page-scroll-section'),
 
 		animateDuration = options.animateDuration || 0.7,
-		animateTiming = options.animateTiming || 'ease',
+		animateTiming = options.animateTiming || 'ease-in-out',
 		maxPosition = sections.length - 1,
 		currentPosition = 0
 
